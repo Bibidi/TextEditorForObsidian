@@ -32,6 +32,23 @@ public class ObsidianTextEditor {
         }
     }
 
+    public static String generateRepetitiveSentences(String basicSentence, int startNumber, int endNumber, int gap) {
+        StringBuilder sb = new StringBuilder();
+        while (startNumber <= endNumber) {
+            sb
+                    .append(basicSentence)
+                    .append(" ")
+                    .append(startNumber)
+                    .append(" ~ ");
+            if (startNumber + gap > endNumber) sb.append(endNumber);
+            else sb.append(startNumber + gap - 1);
+            sb.append("\n");
+            startNumber += gap;
+        }
+
+        return sb.toString();
+    }
+
     private static void removeAnkiIdFromFile(Path filePath) throws IOException {
         String targetPattern = "<!--ID: \\d+-->";
         String replacement = "";
